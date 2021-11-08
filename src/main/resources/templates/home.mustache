@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="sec7-text-box">
+              <p class="font15 time-title" >그린수업 마감까지 남은 시간</p>
+              <div class="time font40">
+                <span class="day"></span>
+                <span class="hours"></span>
+                <span class="col"></span>
+                <span class="minutes"></span>
+                <span class="col"></span>
+                <span class="seconds"></span>
+              </div>
+              
+            </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function remaindTime() {
+    var now = new Date();
+    var end = new Date(now.getFullYear(),10,11,18,00,00);
+    var open = new Date(now.getFullYear(),now.getMonth()+1,now.getDate(),09,00,00);
+  
+    var nt = now.getTime();
+    var ot = open.getTime();
+    var et = end.getTime();
+	   
+       $(".time").fadeIn();
+       $("p.time-title").html("그린수업 마감까지 남은 시간");
+       $(".time").css("color","red");
+     sec =parseInt(et - nt) / 1000;
+     day  = parseInt(sec/60/60/24);
+     sec = (sec - (day * 60 * 60 * 24));
+     hour = parseInt(sec/60/60);
+     sec = (sec - (hour*60*60));
+     min = parseInt(sec/60);
+     sec = parseInt(sec-(min*60));
+     if(hour<10){hour="0"+hour;}
+     if(min<10){min="0"+min;}
+     if(sec<10){sec="0"+sec;}
+      $(".day").html(day +"일");
+      $(".hours").html(hour+ "시간");
+      $(".minutes").html(min+"분");
+      $(".seconds").html(sec+"초");
+      
+ }
+ setInterval(remaindTime,1000);
+</script>
+</body>
+</html>
